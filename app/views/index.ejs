@@ -1,11 +1,20 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <title><%= title %></title>
-    <link rel='stylesheet' href='/css/style.css' />
-  </head>
-  <body>
-    <h1><%= title %></h1>
-    <p>Welcome to <%= title %></p>
-  </body>
-</html>
+<% layout('reusable/boilerplate') -%>
+<% script('http://codeorigin.jquery.com/jquery-2.0.3.min.js') -%>
+<% script('http://ajax.googleapis.com/ajax/libs/angularjs/1.0.2/angular.min.js') -%>
+<% script('http://cdnjs.cloudflare.com/ajax/libs/socket.io/0.9.16/socket.io.min.js') %>
+<% stylesheet('http://netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css') %>
+<% script('js/client.js') %>
+<% stylesheet('css/style.css') %>
+<%- partial('reusable/header') %>
+<div class="container">
+  <div class="chatboard">
+    <div class="span9 chat-view">
+    </div>
+    <div class="span3 offset9 clients-view">
+    </div>
+  </div>
+  <div class="chatbox">
+    <textarea ></textarea>
+    <button >Send</button>
+  </div>
+</div>

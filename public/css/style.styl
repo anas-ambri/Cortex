@@ -1,5 +1,46 @@
+$container_bg = #AAA
+$chat_view_shadow = #DDD
+
+
+border-radius()
+-webkit-border-radius arguments
+-moz-border-radius arguments
+border-radius arguments
+
+box-shadow()
+-webkit-box-shadow arguments
+-moz-box-shadow arguments
+box-shadow arguments
+
+transition()
+-webkit-transition arguments
+-moz-transition arguments
+-ms-transition arguments
+-o-transition arguments
+transition arguments
+
 body
   padding: 50px
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif
 a
   color: #00B7FF
+
+.container
+  min-height: 400px
+
+.chatboard
+  min-height: 400px
+  border: solid 1px $chat_view_shadow
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.6) inset
+
+.chatbox
+  height: 100px
+
+.chatbox > *
+  min-height 100%
+
+.chatbox > textarea
+  width 84.5%
+
+.chatbox > button
+  width 15%

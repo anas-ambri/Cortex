@@ -1,4 +1,5 @@
 var express = require('express'),
+    engine = require('ejs-locals'),
     path = require('path');
 
 module.exports = function (app, config) {
@@ -6,12 +7,14 @@ module.exports = function (app, config) {
     app.set('showStackError', true)
 
     app.use(express.favicon())
-    app.use(express.static(config.root + '/public'))
 
     // don't use logger for test env
     if (process.env.NODE_ENV !== 'test') {
 	app.use(express.logger('dev'))
     }
+
+    //Setting ejs-locals
+    app.engine('ejs', engine);
 
     // set views path, template engine and default layout
     app.set('port', process.env.PORT || config.port)
