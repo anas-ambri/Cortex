@@ -22,7 +22,3 @@ cortex.init(server, {log : true});
 server.listen(app.get('port'), function(){
     console.log('Cortex server listening on port ' + app.get('port'));
 });
-
-setTimeout(function(){
-    cortex.welcomeNewClient("/chat/magnetic", "1234");
-}, 5000);

@@ -12,7 +12,7 @@ myApp.controller('ChatCtrl', ['$scope', function ($scope) {
 
     //origin == "client", "server"
     var messageHtml = function(message, origin){
-	return "<div class='"+origin+" chat-message'><p>"+message+"</p></div>";
+	return "<div class='"+origin+" chat-message'><div class='chat-message-container'><p>"+message+"</p></div></div>";
     };
 
     client.setHandleMessage(function(message){
@@ -75,4 +75,9 @@ myApp.controller('ListChannelsCtrl', ['$scope', function ($scope) {
     $scope.removePublishChannel = function(index){
 	$scope.publishChannels.splice(index, 1);
     };
+
+    $scope.saveUsername = function(){
+	$scope.username = $scope.user;
+    };
+
 }]);

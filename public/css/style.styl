@@ -54,14 +54,20 @@ a
 
 .chat-message
   width 100%
-  border : 3px solid
+
+.chat-message-container
+  width 40%
+  border-width : 3px
+  border-style solid
   border-radius : 3px
+  padding 10px 5px
   box-shadow 2px 2px 4px $chat_view_shadow
 
-.chat-message.client
+.chat-message.client > .chat-message-container
   border-color : $client_chat_border
   text-align left
 
-.chat-message.server
+.chat-message.server > .chat-message-container
   border-color : $server_chat_border
   text-align right
+  margin-right 60%
