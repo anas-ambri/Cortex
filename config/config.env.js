@@ -7,15 +7,15 @@ module.exports = {
 	root: rootPath,
 	port: 3000,
 	app: {
-	    name: 'Nodejs Express Mongoose Demo'
+	    name: 'Cortex'
 	}
     },
     test: {
-	db: 'mongodb://localhost/cortex-db_dev',
+	db: 'mongodb://localhost/cortex-db_test',
 	root: rootPath,
 	port : 3000,
 	app: {
-	    name: 'Nodejs Express Mongoose Demo'
+	    name: 'Cortex'
 	}
     },
     production: {}

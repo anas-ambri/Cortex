@@ -1,6 +1,8 @@
 $container_bg = #AAA
 $chat_view_shadow = #DDD
-
+$client_chat_border = #666
+$server_chat_border = #D0EC45
+$chat_bubble_shadow = #888
 
 border-radius()
 -webkit-border-radius arguments
@@ -30,11 +32,16 @@ a
 
 .chatboard
   min-height: 400px
-  border: solid 1px $chat_view_shadow
-  box-shadow: 0 0 5px rgba(0, 0, 0, 0.6) inset
+
+.chat-messages
+  border: solid 2px $chat_view_shadow
+  height 400px
+  overflow-y scroll
+/*  box-shadow: 0 0 5px rgba(0, 0, 0, 0.6) inset  */
 
 .chatbox
   height: 100px
+  width 100%
 
 .chatbox > *
   min-height 100%
@@ -43,4 +50,18 @@ a
   width 84.5%
 
 .chatbox > button
-  width 15%
+  width 14.5%
+
+.chat-message
+  width 100%
+  border : 3px solid
+  border-radius : 3px
+  box-shadow 2px 2px 4px $chat_view_shadow
+
+.chat-message.client
+  border-color : $client_chat_border
+  text-align left
+
+.chat-message.server
+  border-color : $server_chat_border
+  text-align right
