@@ -28,8 +28,16 @@ myApp.factory('selectedChatChannel', function(){
     };
 });
 
+myApp.factory('username', function(){
+    var username = "Anonymous";
+    return {
+	get : function() {return username;},
+	set : function(val){ username = val;}
+    };
+});
 
-myApp.controller('ChatCtrl', ['$scope', 'selectedChatChannel', function ($scope, selectedChatChannel) {
+
+myApp.controller('ChatCtrl', ['$scope', 'selectedChatChannel', 'username', function ($scope, selectedChatChannel, username) {
      $scope.messageDisplay = "";
 
     client.setHandleMessage(function(message){
@@ -45,7 +53,7 @@ myApp.controller('ChatCtrl', ['$scope', 'selectedChatChannel', function ($scope,
 	    if(err)
 		$scope.inputError = "Error "+error.message;
 	    else
-		$scope.displayMessage(message, "client");
+		$scope.displayMessage(username.get()+": "+input, "client");
 	});
     };
 
@@ -54,7 +62,7 @@ myApp.controller('ChatCtrl', ['$scope', 'selectedChatChannel', function ($scope,
     }
 }]);
 
-myApp.controller('ListChannelsCtrl', ['$scope', 'history', 'selectedChatChannel', function ($scope, history, selectedChatChannel) {
+myApp.controller('ListChannelsCtrl', ['$scope', 'history', 'selectedChatChannel', 'username', function ($scope, history, selectedChatChannel, username) {
 
     $scope.subscribeChannels = subscribeChannels;
     $scope.publishChannels = publishChannels;
@@ -106,6 +114,7 @@ myApp.controller('ListChannelsCtrl', ['$scope', 'history', 'selectedChatChannel'
 
     $scope.chooseUsername = function(){
 	$scope.user = $scope.username;
+	username.set($scope.username);
     };
 
     $scope.displayMessage = function(message, origin){
