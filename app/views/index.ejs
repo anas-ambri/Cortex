@@ -41,7 +41,7 @@
 
     <ul class="publish-channels">
       <h3>Sends to:</h3>
-      <li ng-repeat="channel in publishChannels">{{channel}}<button class="remove" ng-click="removePublishChannel($index)">X</button></li>
+      <li ng-repeat="channel in publishChannels">{{channel}}<button class="remove" ng-click="removePublishChannel($index)">X</button><button ng-click="publishChannelChanged($index)" >Select</button></li>
     </ul>
     <div class="add-channel">
       <input type="text"  name="channel-query" ng-model="newPublishChannel"/>

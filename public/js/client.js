@@ -20,7 +20,16 @@ myApp.factory('history', function($http){
     };
 });
 
-myApp.controller('ChatCtrl', ['$scope', function ($scope) {
+myApp.factory('selectedChatChannel', function(){
+    var channel;
+    return {
+	get : function() {return channel;},
+	set : function(val){ channel = val;}
+    };
+});
+
+
+myApp.controller('ChatCtrl', ['$scope', 'selectedChatChannel', function ($scope, selectedChatChannel) {
      $scope.messageDisplay = "";
 
     client.setHandleMessage(function(message){
@@ -31,23 +40,13 @@ myApp.controller('ChatCtrl', ['$scope', function ($scope) {
 	var input = $scope.chatInput;
 	if(!input)
 	    return;
-	var res = input.match(/^\$(.+)\$(.+)$/);
-	if(!res)
-	    $scope.inputError = "Message must be of form '$(.*)$(.*)'";
-	else {
-	    $scope.inputError = "";
-	    var channel = res[1];
-	    var message = res[2];
-	    if(!_.find(publishChannels, function(item){return item == channel;}))
-	       publishChannels.push(channel);
-	   
-	    client.publishTo(channel, {text : message}, function(err){
-		if(err)
-		    $scope.inputError = "Error "+error.message;
-		else
-		    $scope.displayMessage(message, "client");
-	    });
-	}
+	var c = selectedChatChannel.get();
+	client.publishTo(c, {text : input}, function(err){
+	    if(err)
+		$scope.inputError = "Error "+error.message;
+	    else
+		$scope.displayMessage(message, "client");
+	});
     };
 
     $scope.displayMessage = function(message, origin){
@@ -55,9 +54,14 @@ myApp.controller('ChatCtrl', ['$scope', function ($scope) {
     }
 }]);
 
-myApp.controller('ListChannelsCtrl', ['$scope', 'history', function ($scope, history) {
+myApp.controller('ListChannelsCtrl', ['$scope', 'history', 'selectedChatChannel', function ($scope, history, selectedChatChannel) {
+
     $scope.subscribeChannels = subscribeChannels;
     $scope.publishChannels = publishChannels;
+
+    $scope.publishChannelChanged = function(index){
+	selectedChatChannel.set(publishChannels[index]);
+    };
 
     $scope.addSubscribeChannel = function(){
 	var channel = $scope.newSubscribeChannel;
