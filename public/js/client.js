@@ -7,13 +7,21 @@ _.each(subscribeChannels, function(item){
     client.subscribeTo(item);
 });
 
+//origin == "client", "server"
+var messageHtml = function(message, origin){
+    return "<div class='"+origin+" chat-message'><div class='chat-message-container'><p>"+message+"</p></div></div>";
+};
+
+myApp.factory('history', function($http){
+    return {
+	getHistory : function(channel){
+	    return $http.get('/history?channel='+channel);
+	}
+    };
+});
+
 myApp.controller('ChatCtrl', ['$scope', function ($scope) {
      $scope.messageDisplay = "";
-
-    //origin == "client", "server"
-    var messageHtml = function(message, origin){
-	return "<div class='"+origin+" chat-message'><div class='chat-message-container'><p>"+message+"</p></div></div>";
-    };
 
     client.setHandleMessage(function(message){
 	$scope.displayMessage(message.text, "server");
@@ -47,7 +55,7 @@ myApp.controller('ChatCtrl', ['$scope', function ($scope) {
     }
 }]);
 
-myApp.controller('ListChannelsCtrl', ['$scope', function ($scope) {
+myApp.controller('ListChannelsCtrl', ['$scope', 'history', function ($scope, history) {
     $scope.subscribeChannels = subscribeChannels;
     $scope.publishChannels = publishChannels;
 
@@ -76,8 +84,27 @@ myApp.controller('ListChannelsCtrl', ['$scope', function ($scope) {
 	$scope.publishChannels.splice(index, 1);
     };
 
-    $scope.saveUsername = function(){
-	$scope.username = $scope.user;
+    $scope.fetchHistory = function(index){
+	var channel = $scope.subscribeChannels[index];
+	history.getHistory(channel).then(
+	    function(data){
+		data.data.forEach(function(message){
+		    var date = new Date(message.timestamp);
+		    date = date.toUTCString();
+		    var content = message.content.text;
+		    $scope.displayMessage("Time:"+date+", Content: "+content, "server");
+		})
+	    },
+	    function(reason){
+		$scope.$emit('error', data.reason);
+	    });
     };
 
+    $scope.chooseUsername = function(){
+	$scope.user = $scope.username;
+    };
+
+    $scope.displayMessage = function(message, origin){
+	$(".chat-messages").append(messageHtml(message, origin));
+    }
 }]);

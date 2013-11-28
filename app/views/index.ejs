@@ -23,16 +23,16 @@
     </div>
   </div>
   <div class="col-lg-4 offset9 channels-view" ng-controller="ListChannelsCtrl">
-    <div class="create-username">
-      <h3 ng-show="username">{{username}}</h3>
-      <div ng-hide="username">
-	<label>Enter Username</label>
-	<input ng-model="user" />
-	<button ng-click="saveUsername()">Save</button>
+    <div>
+      <h3 ng-show="user">{{user}}</h3>
+      <div ng-hide="user">
+	<label>Username</label>
+	<input ng-model="username" type="text"/><button ng-click="chooseUsername()">Save</button>
       </div>
+    </div>
     <ul class="subscribed-channels">
       <h3>Listens to:</h3>
-      <li ng-repeat="channel in subscribeChannels">{{channel}}<button class="remove" ng-click="removeSubscribeChannel($index)">X</button></li>
+      <li ng-repeat="channel in subscribeChannels">{{channel}}<button class="remove" ng-click="removeSubscribeChannel($index)">X</button><button class="history" ng-click="fetchHistory($index)">History</button></li>
     </ul>
     <div class="add-channel">
       <input type="text"  name="channel-query" ng-model="newSubscribeChannel"/>
