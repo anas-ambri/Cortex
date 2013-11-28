@@ -2,7 +2,7 @@ var express = require('express'),
     engine = require('ejs-locals'),
     path = require('path');
 
-module.exports = function (app, config) {
+module.exports = function (app, cortex, config) {
 
     app.set('showStackError', true)
 
@@ -27,6 +27,11 @@ module.exports = function (app, config) {
 	// bodyParser should be above methodOverride
 	app.use(express.bodyParser())
 	app.use(express.methodOverride())
+
+	app.use(function(req, res, next){
+	    req.cortex = cortex;
+	    next();
+	})
 
 	app.use(app.router)
 

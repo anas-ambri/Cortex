@@ -8,15 +8,15 @@ mongoose = require('mongoose');
 
 mongoose.connect(envConfig.db);
 
+
+var Cortex = require('./lib/');
+var cortex = new Cortex();
 var app = express();
-require('./config/config.express')(app, envConfig);
+require('./config/config.express')(app, cortex, envConfig);
 
 require('./config/config.routes')(app);
 
 var server = http.createServer(app);
-
-var Cortex = require('./lib/');
-var cortex = new Cortex();
 cortex.init(server, {log : true});
 
 server.listen(app.get('port'), function(){

@@ -1,5 +1,5 @@
 function FayeClient(){
-    this.client = new Faye.Client('http://localhost:3000/cortex',
+    this.client = new Faye.Client('http://192.168.42.1:3000/cortex',
 				  {
 				      timeout: 120,
 				      retry : 10

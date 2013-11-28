@@ -1,3 +1,6 @@
+var routes = require('../app/routes/');
+
 module.exports = function(app) {
-    app.get('/', require('../app/routes/index'));
+    app.get('/', routes.index);
+    app.get('/history', routes.history);
 }
