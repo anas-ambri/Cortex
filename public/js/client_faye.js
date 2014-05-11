@@ -7,7 +7,6 @@ function FayeClient(){
     this.pubChannels =  [];
     this.subChannels =  [];
     this.subscriptions = {};
-    this.client.addExtension(Logger);
 };
 
 FayeClient.prototype.addExtension = function(extension){

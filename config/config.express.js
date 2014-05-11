@@ -4,36 +4,36 @@ var express = require('express'),
 
 module.exports = function (app, cortex, config) {
 
-    app.set('showStackError', true)
+    app.set('showStackError', true);
 
-    app.use(express.favicon())
+    app.use(express.favicon());
 
     // don't use logger for test env
     if (process.env.NODE_ENV !== 'test') {
-	app.use(express.logger('dev'))
+	app.use(express.logger('dev'));
     }
 
     //Setting ejs-locals
     app.engine('ejs', engine);
 
     // set views path, template engine and default layout
-    app.set('port', process.env.PORT || config.port)
-    app.set('views', config.root + '/app/views')
-    app.set('view engine', 'ejs')
+    app.set('port', process.env.PORT || config.port);
+    app.set('views', config.root + '/app/views');
+    app.set('view engine', 'ejs');
 
     app.configure(function () {
-	app.use(express.cookieParser())
+	app.use(express.cookieParser());
 
 	// bodyParser should be above methodOverride
-	app.use(express.bodyParser())
-	app.use(express.methodOverride())
+	app.use(express.bodyParser());
+	app.use(express.methodOverride());
 
 	app.use(function(req, res, next){
 	    req.cortex = cortex;
 	    next();
 	})
 
-	app.use(app.router)
+	app.use(app.router);
 
 	app.use(require('stylus').middleware(config.root + '/public/css/'));
 	app.use(express.static(path.join(config.root, 'public')));
@@ -47,23 +47,23 @@ module.exports = function (app, cortex, config) {
 	    if (err.message
 		&& (~err.message.indexOf('not found')
 		    || (~err.message.indexOf('Cast to ObjectId failed')))) {
-		return next()
+		return next();
 	    }
 
 	    // log it
 	    // send emails if you want
-	    console.error(err.stack)
+	    console.error(err.stack);
 
 	    // error page
-	    res.status(500).render('500', { error: err.stack })
-	})
+	    res.status(500).render('500', { error: err.stack });
+	});
 
 	// assume 404 since no middleware responded
 	app.use(function(req, res, next){
 	    res.status(404).render('404', {
 		url: req.originalUrl,
 		error: 'Not found'
-	    })
-	})
-    })
-}
+	    });
+	});
+    });
+};

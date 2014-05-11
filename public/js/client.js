@@ -74,7 +74,7 @@ myApp.controller('ListChannelsCtrl', ['$scope', 'history', 'selectedChatChannel'
     $scope.addSubscribeChannel = function(){
 	var channel = $scope.newSubscribeChannel;
 	if(channel){
-	    $scope.subscribeChannels.push(channel)
+	    $scope.subscribeChannels.push(channel);
 	    client.subscribeTo(channel);
 	}
     };
@@ -105,10 +105,10 @@ myApp.controller('ListChannelsCtrl', ['$scope', 'history', 'selectedChatChannel'
 		    date = date.toUTCString();
 		    var content = message.content.text;
 		    $scope.displayMessage("Time:"+date+", Content: "+content, "server");
-		})
+		});
 	    },
 	    function(reason){
-		$scope.$emit('error', data.reason);
+		$scope.$emit('error', reason);
 	    });
     };
 
@@ -119,5 +119,5 @@ myApp.controller('ListChannelsCtrl', ['$scope', 'history', 'selectedChatChannel'
 
     $scope.displayMessage = function(message, origin){
 	$(".chat-messages").append(messageHtml(message, origin));
-    }
+    };
 }]);
