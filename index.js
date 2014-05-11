@@ -4,10 +4,9 @@ var express = require('express')
 
 var env = process.env.NODE_ENV || 'development';
 var envConfig = require('./config/config.env')[env],
-mongoose = require('mongoose');
+    mongoose = require('mongoose');
 
 mongoose.connect(envConfig.db);
-
 
 var Cortex = require('./lib/');
 var cortex = new Cortex();

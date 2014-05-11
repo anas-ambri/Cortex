@@ -7,7 +7,7 @@ This is aimed to be an [presence server](http://en.wikipedia.org/wiki/Presence_s
 
 ##Development##
 ###Requirements###
-You need to have [node](http://howtonode.org/how-to-install-nodejs) and [mongodb](http://docs.mongodb.org/manual/installation/) installed.
+You need to have [node](http://howtonode.org/how-to-install-nodejs), [mongodb](http://docs.mongodb.org/manual/installation/) and redis installed.
 
 ###Installing###
 	   $ git clone git://git@github.com:anas-ambri/Cortex.git
@@ -29,5 +29,5 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 
 
 ##Collaborators##
-Nick Sweet - nckswt@gmail.com
-Anas Ambri - anas.ambri@gmail.com
+- Nick Sweet: nckswt@gmail.com
+- Anas Ambri: anas.ambri@gmail.com
