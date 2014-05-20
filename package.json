@@ -1,7 +1,7 @@
 {
   "name": "cortex-server",
   "description": "An adhoc centralized presence server",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "keywords": [
     "presence server",
     "adhoc"
@@ -10,10 +10,6 @@
   "repository": {
     "type": "git",
     "url": "https://github.com/anas-ambri/Cortex.git"
-  },
-  "engines": {
-    "node": "0.10.x",
-    "npm": "1.2.x"
   },
   "scripts": {
     "test": "NODE_ENV=test ./node_modules/.bin/mocha --reporter spec test/test.*.js"
