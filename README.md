@@ -2,18 +2,14 @@ Cortex
 ======
 
 ##Idea##
-This is aimed to be an [presence server](http://en.wikipedia.org/wiki/Presence_service) for adhoc chat applications. It will be deployed on a rasberry Pi, allowing any client existing in proximity to the server to join a chat session with other nearby clients and get the history of all messages while absent.
-
+This is aimed to be an [presence server](http://en.wikipedia.org/wiki/Presence_service) for adhoc chat applications. It was intended to be deployed on a rasberry Pi, allowing any client existing in proximity to the server to join a chat session with other nearby clients and get the history of all messages while absent.
 
 ##Development##
 ###Requirements###
-You need to have [node](http://howtonode.org/how-to-install-nodejs), [mongodb](http://docs.mongodb.org/manual/installation/) and redis installed.
+You need to have [node](http://howtonode.org/how-to-install-nodejs), [mongodb](http://docs.mongodb.org/manual/installation/) and [redis](http://redis.io/topics/quickstart) installed.
 
 ###Installing###
-	   $ git clone git://git@github.com:anas-ambri/Cortex.git
-	   $ cd Cortex
-	   $ npm install
-	   $ npm start
+	   $ npm install cortex-server
 
 ###Running the tests###
 	   $ npm test
